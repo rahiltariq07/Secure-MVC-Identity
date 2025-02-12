@@ -139,7 +139,7 @@ app.UseAuthentication();
 
 ![Modify Program.cs](images/net15.png)
 
-👉 **Why modify **``**?** These settings ensure that Identity authentication is correctly wired into the application.
+👉 **Why modify?** These settings ensure that Identity authentication is correctly wired into the application.
 
 ## 7. Apply Database Migrations
 
