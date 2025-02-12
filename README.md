@@ -32,6 +32,7 @@ This repository provides step-by-step guidance on securing an ASP.NET MVC web ap
    - `Microsoft.AspNetCore.Identity.UI` → Provides UI components for authentication.
    - `Microsoft.EntityFrameworkCore.SqlServer` → Adds support for SQL Server as the database provider.
    - `Microsoft.EntityFrameworkCore.Tools` → Adds migration and database management tools.
+
 ![Install the Nuget Packages](images/net5.png)
 
 👉 **Why install these packages?** These packages provide the necessary infrastructure to implement user authentication and manage user data securely.
