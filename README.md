@@ -7,7 +7,7 @@ This module provides step-by-step guidance on securing an ASP.NET MVC web applic
 ## Prerequisites
 
 - Visual Studio 2022 installed
-- .NET 6.0 or later installed
+- .NET 8.0 or later installed
 - SQL Server installed
 
 ## 1. Create an ASP.NET MVC Project
