@@ -2,7 +2,7 @@
 
 ## Overview
 
-This module provides step-by-step guidance on securing an ASP.NET MVC web application using Identity. You will learn how to set up authentication, customize Identity to include additional user fields, and ensure secure user management.
+This repository provides step-by-step guidance on securing an ASP.NET MVC web application using Identity. You will learn how to set up authentication, customize Identity to include additional user fields, and ensure secure user management.
 
 ## Prerequisites
 
