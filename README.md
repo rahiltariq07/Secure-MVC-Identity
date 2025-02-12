@@ -14,9 +14,13 @@ This module provides step-by-step guidance on securing an ASP.NET MVC web applic
 
 1. Open **Visual Studio 2022**.
 2. Click on **Create a new project**.
+![Creating a new project](images/net1.png)
 3. Select **ASP.NET Core Web App (Model-View-Controller)** and click **Next**.
+![Select ASP.NET Core Web App (MVC)](images/net2.png)
 4. Provide a project name and click **Create**.
+![Provide a project name](images/net3.png)
 5. Under **Authentication Type**, choose **None** and click **Create**.
+![Choose None](images/net4.png)
 
 ## 2. Install Required NuGet Packages
 
@@ -26,15 +30,22 @@ This module provides step-by-step guidance on securing an ASP.NET MVC web applic
    - `Microsoft.AspNetCore.Identity.UI`
    - `Microsoft.EntityFrameworkCore.SqlServer`
    - `Microsoft.EntityFrameworkCore.Tools`
+![Install the Nuget Packages](images/net5.png)
 
 ## 3. Add Identity Scaffolding
 
 1. Right-click on the **project** and select **Add** → **New Scaffolded Item**.
+![Scaffolded Item](images/net6.png)
 2. Select **Identity** and click **Add**.
+![Select Identity](images/net7.png)
 3. Check the checkbox **Override all files**.
+![Override all files](images/net8.png)
 4. Click on the **+** icon next to **DbContext class** and add your DbContext.
+![DbContext class](images/net9.png)
 5. Click **Add**.
+![Add](images/net10.png)
 6. A folder named **Areas** will be created in your project.
+![Areas](images/net11.png)
 
 ## 4. Customize Identity with Additional User Fields
 
@@ -56,9 +67,12 @@ public class ApplicationUser : IdentityUser
     public string LastName { get; set; }
 }
 ```
+![ApplicationUser](images/net12.png)
 
 3. Open your **DbContext** file and replace `IdentityUser` with `ApplicationUser`.
+![Replace IdentityUser with ApplicationUser](images/net13.png)
 4. Modify `Program.cs` to use `ApplicationUser` in `AddDefaultIdentity`.
+![Modify Program.cs to use ApplicationUser in `AddDefaultIdentity](images/net14.png)
 
 ## 5. Configure Database Connection
 
@@ -84,6 +98,8 @@ builder.Services.AddRazorPages();
 app.MapRazorPages();
 ```
 
+![Modify Program.cs](images/net15.png)
+
 ## 7. Apply Database Migrations
 
 Run the following commands in **Package Manager Console**:
@@ -101,6 +117,7 @@ update-database
 ```html
 <partial name="_LoginPartial" />
 ```
+![Add Sign-In and Registration Links](images/net16.png)
 
 ## 9. Modify Registration Page to Include First and Last Name
 
@@ -120,6 +137,8 @@ update-database
 </div>
 ```
 
+![Modify Registration Page to Include First and Last Name](images/net17.png)
+
 3. Open `Register.cshtml.cs` and add these properties inside the `InputModel` class:
 
 ```csharp
@@ -134,6 +153,8 @@ public string FirstName { get; set; }
 public string LastName { get; set; }
 ```
 
+![Adding Properties](images/net18.png)
+
 4. Modify the `OnPostAsync` method to assign values to `FirstName` and `LastName`:
 
 ```csharp
@@ -141,6 +162,8 @@ var user = CreateUser();
 user.FirstName = Input.FirstName;
 user.LastName = Input.LastName;
 ```
+
+![Assign Values](images/net19.png)
 
 ## 10. Modify Profile Management Page
 
@@ -160,6 +183,8 @@ user.LastName = Input.LastName;
 </div>
 ```
 
+![Modify Profile Management Page](images/net20.png)
+
 3. Open `Index.cshtml.cs` and update the `InputModel` class:
 
 ```csharp
@@ -174,6 +199,8 @@ public string FirstName { get; set; }
 public string LastName { get; set; }
 ```
 
+![InputModel](images/net21.png)
+
 4. Modify the `LoadAsync` method:
 
 ```csharp
@@ -184,6 +211,8 @@ Input = new InputModel
     LastName = user.LastName
 };
 ```
+
+![LoadAsync](images/net22.png)
 
 5. Modify the `OnPostAsync` method:
 
@@ -198,7 +227,17 @@ user.LastName = Input.LastName;
 await _userManager.UpdateAsync(user);
 ```
 
-## 11. Apply Database Changes
+![OnPostAsync](images/net23.png)
+
+## 11. Update Files to Use ApplicationUser Instead of IdentityUser
+
+Now that you have created and customized the **ApplicationUser** class, you need to update your project files to use this new class instead of the default **IdentityUser** class. This involves changing references in the relevant pages and views like **Register, Login, Logout, Index, _LoginPartial.cshtml, etc**.
+
+![Update Files](images/net24.png)
+![Update Files](images/net25.png)
+![Update Files](images/net26.png)
+
+## 12. Apply Database Changes
 
 Run the following commands in **Package Manager Console**:
 
@@ -207,7 +246,7 @@ add-migration "CustomFields"
 update-database
 ```
 
-## 12. Run the Application
+## 13. Run the Application
 
 Press `Ctrl + F5` to start the application and test the authentication and user profile features.
 
