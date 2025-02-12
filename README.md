@@ -98,6 +98,12 @@ builder.Services.AddRazorPages();
 app.MapRazorPages();
 ```
 
+3. Add the following line before `app.UseAuthorization();`
+
+```csharp
+app.UseAuthentication();
+```
+
 ![Modify Program.cs](images/net15.png)
 
 ## 7. Apply Database Migrations
