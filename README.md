@@ -22,15 +22,19 @@ This repository provides step-by-step guidance on securing an ASP.NET MVC web ap
 5. Under **Authentication Type**, choose **None** and click **Create**.
 ![Choose None](images/net4.png)
 
+👉 **Why choose 'None' for Authentication?** This allows us to manually integrate Identity authentication instead of using the default authentication setup.
+
 ## 2. Install Required NuGet Packages
 
 1. Open **NuGet Package Manager** in Visual Studio.
 2. Install the following packages:
-   - `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
-   - `Microsoft.AspNetCore.Identity.UI`
-   - `Microsoft.EntityFrameworkCore.SqlServer`
-   - `Microsoft.EntityFrameworkCore.Tools`
+   - `Microsoft.AspNetCore.Identity.EntityFrameworkCore` → Provides the core Identity framework.
+   - `Microsoft.AspNetCore.Identity.UI` → Provides UI components for authentication.
+   - `Microsoft.EntityFrameworkCore.SqlServer` → Adds support for SQL Server as the database provider.
+   - `Microsoft.EntityFrameworkCore.Tools` → Adds migration and database management tools.
 ![Install the Nuget Packages](images/net5.png)
+
+👉 **Why install these packages?** These packages provide the necessary infrastructure to implement user authentication and manage user data securely.
 
 ## 3. Add Identity Scaffolding
 
@@ -46,6 +50,8 @@ This repository provides step-by-step guidance on securing an ASP.NET MVC web ap
 ![Add](images/net10.png)
 6. A folder named **Areas** will be created in your project.
 ![Areas](images/net11.png)
+
+👉 **Why Scaffold Identity?** Scaffolding generates all necessary authentication views and logic, allowing us to customize them according to our needs.
 
 ## 4. Customize Identity with Additional User Fields
 
@@ -74,6 +80,8 @@ public class ApplicationUser : IdentityUser
 4. Modify `Program.cs` to use `ApplicationUser` in `AddDefaultIdentity`.
 ![Modify Program.cs to use ApplicationUser in `AddDefaultIdentity](images/net14.png)
 
+👉 **Why add custom fields?** This allows us to store additional user details beyond just username and email.
+
 ## 5. Configure Database Connection
 
 1. Open `appsettings.json` and modify the `ConnectionStrings` section:
@@ -83,6 +91,8 @@ public class ApplicationUser : IdentityUser
   "ApplicationDbContext": "Server=YOUR_SERVER;Database=YourDatabase;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
 }
 ```
+
+👉 **Why configure a connection string?** This allows your application to connect to the SQL Server database.
 
 ## 6. Modify `Program.cs`
 
@@ -106,6 +116,8 @@ app.UseAuthentication();
 
 ![Modify Program.cs](images/net15.png)
 
+👉 **Why modify **``**?** These settings ensure that Identity authentication is correctly wired into the application.
+
 ## 7. Apply Database Migrations
 
 Run the following commands in **Package Manager Console**:
@@ -114,6 +126,8 @@ Run the following commands in **Package Manager Console**:
 add-migration "initial"
 update-database
 ```
+
+👉 **Why apply migrations?** This creates the necessary tables for Identity in your SQL Server database.
 
 ## 8. Add Sign-In and Registration Links
 
@@ -124,6 +138,8 @@ update-database
 <partial name="_LoginPartial" />
 ```
 ![Add Sign-In and Registration Links](images/net16.png)
+
+👉 **Why add login links?** This provides users with access to authentication pages.
 
 ## 9. Modify Registration Page to Include First and Last Name
 
@@ -170,6 +186,8 @@ user.LastName = Input.LastName;
 ```
 
 ![Assign Values](images/net19.png)
+
+👉 **Why modify the registration page?** This ensures that new users provide their first and last names during registration.
 
 ## 10. Modify Profile Management Page
 
@@ -235,13 +253,17 @@ await _userManager.UpdateAsync(user);
 
 ![OnPostAsync](images/net23.png)
 
+👉 **Why update profile management?** This allows users to update their personal details after registration.
+
 ## 11. Update Files to Use ApplicationUser Instead of IdentityUser
 
 Now that you have created and customized the **ApplicationUser** class, you need to update your project files to use this new class instead of the default **IdentityUser** class. This involves changing references in the relevant pages and views like **Register, Login, Logout, Index, _LoginPartial.cshtml, etc**.
 
 ![Update Files](images/net24.png)
 ![Update Files](images/net25.png)
-![Update Files](images/net26.png)
+![Update Files](images/net26.png
+
+👉 **Why update Identity references?** This ensures the application uses our custom `ApplicationUser` class.
 
 ## 12. Apply Database Changes
 
@@ -252,9 +274,17 @@ add-migration "CustomFields"
 update-database
 ```
 
+👉 **Why update the database?** This modifies the database schema to include `FirstName` and `LastName` fields.
+
 ## 13. Run the Application
 
 Press `Ctrl + F5` to start the application and test the authentication and user profile features.
+
+👉 **What to test?**
+
+- **User registration with First Name & Last Name**
+- **Login and Logout functionality**
+- **Profile management (update First Name & Last Name)**
 
 ## Conclusion
 
