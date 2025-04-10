@@ -111,7 +111,7 @@ public class ApplicationUser : IdentityUser
 
 ```json
 "ConnectionStrings": {
-  "ApplicationDbContext": "Server=YOUR_SERVER;Database=YourDatabase;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+  "learn_microsoft_identityContextConnection": "Server=YOUR_SERVER;Database=YourDatabase;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
 }
 ```
 
